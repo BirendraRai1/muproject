@@ -1,0 +1,54 @@
+.dialogue-answer {
+    min-height: 58px;
+    /*background: #D8F6CE;*/
+    padding: 4px;
+    border-radius: 2px;
+}
+
+.dialogue-answer .profil-picture {
+    width: 50px;
+    height: 50px;
+    float: left;
+   /* border: 1px solid #ccc;*/
+    /*border-radius: 3px;*/
+    position: relative;
+    margin: 0 5px 0 0;
+    background: #fff;
+    overflow: hidden;
+}
+
+ a {
+	text-decoration: none;
+    color: #1c76ba;
+    transition: color .35s ease-in-out, border-bottom-color .35s ease-in-out;
+    outline: 0;
+}
+
+.dialogue-answer .profil-picture img {
+    position: absolute;
+    max-width: 48px;
+    max-height: 48px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 0;
+}
+
+.dialogue-answer span {
+    color: #333;
+    font-weight: 700;
+}
+
+.btn-secondary{
+	border-radius: 16px;
+    margin-left: 54px;
+    cursor: default;
+    padding: 10px;
+    background-color: #362e40;
+    color: white;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+}

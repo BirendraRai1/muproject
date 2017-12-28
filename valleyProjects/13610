@@ -1,0 +1,9 @@
+13610
+
+style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);"
+
+
+<div class="carousel-item" style="position:relative"><div style="position:relative; display:inline-block"><a href="'+data.data[0][i]['Url']+'" style="text-decoration:none; cursor:default; "><img src="'+data.data[0][i]['bg']+'" alt="" style="display:block"/><div class="caption" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);"><p class="card-title" style="text-align:left;font-size:12pt; line-height:1;"><b>'+data.data[0][i]['category']+'</b></p><p class="card-title" style="font-size:12pt; line-height: 1"><b>'+data.data[0][i]['name']+'</b></p><p class="card-text" style="font-size:11pt; line-height: 1.2">'+data.data[0][i]['duration']+'</p><p>'+data.data[0][i]['author']+'</p></div></a></div></div>' ;
+
+
+<div class="carousel-item" style="position:relative"><div style="position:relative; display:inline-block"><a href="'+data.data[0][i]['Url']+'" style="text-decoration:none; cursor:default; "><img src="'+data.data[0][i]['bg']+'" alt="" style="display:block"/><div class="caption" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);"><p class="card-title" style="text-align:left;font-size:12pt; line-height:1;"><b>'+data.data[0][i]['category']+'</b></p><p class="card-title" style="font-size:12pt; line-height: 1"><b>'+data.data[0][i]['name']+'</b></p><p class="card-text" style="font-size:11pt; line-height: 1.2">'+data.data[0][i]['duration']+'</p><p>'+data.data[0][i]['author']+'</p></div></a></div></div>' ;

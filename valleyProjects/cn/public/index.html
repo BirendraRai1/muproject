@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="/">
+  <title>Conversation Chat App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta property="og:image" content="conversation.svg" />
+  <meta property="og:title" content="Conversation Chat Simple" />
+  <meta property="og:description" content="Sample application that shows how to use the Conversation API to identify user intents" />
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/app.css">
+  <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="faviconFont/css/font-awesome.css">
+  <link rel="stylesheet" href="font-awesome.min.css">
+</head>
+<body>
+  <div id="contentParent" class="responsive-columns-wrapper">
+    <div id="chat-column-holder" class="responsive-column content-column">
+      <div class="chat-column">
+        <div id="scrollingChat"></div>
+        <label for="textInput" class="inputOutline">
+          <input id="textInput" class="input responsive-column"
+          placeholder="Type something" type="text"
+          onkeydown="ConversationPanel.inputKeyDown(event, this)">
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="btn-group">
+    <input type="button" value="Romance" onclick="Api.getNews('Romance')"/>
+    <input type="button" value="Humor"   onclick="Api.getNews('Humor')"/>
+    <input type="button" value="Thriller" onclick="Api.getNews('Thriller')"/>
+    <input type="button" value="Horror" onclick="Api.getNews('Horror')"/>
+  </div>
+
+  <!-- Here -->
+ <!-- 
+<div class="row">
+ <div class="col-lg-3">
+ <div class="card" >
+  <img class="card-img" src="https://dal.objectstorage.open.softlayer.com/v1/AUTH_825fa5c8cc274e1a8b6240fd72393990/meta_images/10.jpg" alt="Card image">
+  <div class="card-img-overlay" >
+    <h4 class="card-title">Card title</h4>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+  </div>
+</div> 
+</div>
+</div>
+ -->
+  <!-- Here -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/conversation.js"></script>
+  <script src="js/payload.js"></script>
+  <script src="js/global.js"></script>
+  <script type="text/javascript">
+    function abc ()
+    {
+      $('.owl-carousel').owlCarousel({
+        loop: false,
+        margin: 30,
+        dots: false,
+        nav: false,
+        responsiveClass: true,
+        responsive: {
+          0: {
+            items: 1,
+            margin: 10,
+            stagePadding: 45,
+          },
+          600: {
+            items: 3,
+            margin: 20,
+            stagePadding: 50,
+          },
+          1000: {
+            items: 4
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
