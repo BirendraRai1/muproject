@@ -432,8 +432,8 @@ body {
   content: "following";
 }
 .image {
-  width: 240px;
-  height: 200px;
+  width: 360px;
+  height: 360px;
   cursor: pointer;
   margin: 0 20px 40px;
   overflow: hidden;
@@ -493,7 +493,7 @@ body {
 }
 @media screen and (max-width: 1300px) {
   .container {
-    max-width: 843px;
+    max-width: 100%;
   }
   /*.overlay-card {
     max-width: 803px;
@@ -512,7 +512,8 @@ body {
 }
 @media screen and (max-width: 1000px) {
   .container {
-    max-width: 562px;
+    max-width: 100%;
+    text-align: center;
   }
   /*.overlay-card {
     max-width: 522px;

@@ -26,8 +26,8 @@ var ConversationPanel = (function() {
   // Initialize the module
   function init() {
     chatUpdateSetup();
-    //Api.sendRequest( 'Hi', null );
-    Api.getNews(3);
+    Api.sendRequest( 'Hi', null );
+    //Api.getNews(3);
     //Api.todaynews();
     setupInputBox();
   }

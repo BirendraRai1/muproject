@@ -28,6 +28,7 @@ app.use(cors());
 // Bootstrap application settings
 app.use(express.static('./public')); // load UI from public folder
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 
 // Create the service wrapper
 var conversation = new Conversation({
@@ -46,6 +47,7 @@ var discovery = new DiscoveryV1({
 
 // Endpoint to be call from the client side
 app.post('/api/message', function(req, res) {
+  console.log("messageapi");
   var workspace = process.env.WORKSPACE_ID || 'e8ddaeb6-3d24-4113-a178-836e9bca9e01';
   if (!workspace || workspace === '<workspace-id>') {
     return res.json({
@@ -71,14 +73,6 @@ app.post('/api/message', function(req, res) {
 
 
 app.post('/api/discnews',function(req,res){
-  var workspace=process.env.WORKSPACE_ID || 'e8ddaeb6-3d24-4113-a178-836e9bca9e01';
-  if(!workspace || workspace==='<workspace-id>'){
-    return res.json({
-      'output':{
-        'text':'The app has not been configured with a <b>WORKSPACE_ID</b> environment variable. Please refer to the ' + '<a href="https://github.com/watson-developer-cloud/conversation-simple">README</a> documentation on how to set this variable. <br>' + 'Once a workspace has been defined the intents may be imported from ' + '<a href="https://github.com/watson-developer-cloud/conversation-simple/blob/master/training/car_workspace.json">here</a> in order to get a working application.'
-      }
-    });
-  }
   discovery.query(
   {
     environment_id: '<environment_id>',
@@ -93,6 +87,8 @@ app.post('/api/discnews',function(req,res){
     }
   }
   );
+  var abc=req.body.textInput;
+  console.log("abc ",abc);
 });
 
 /**

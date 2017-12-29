@@ -28,15 +28,15 @@
         </div>
         <label for="textInput" class="inputOutline">
           <input id="textInput" class="input responsive-column"
-          placeholder="Type something" type="text"
+          placeholder="Type something" name="textInput" type="text"
           onkeydown="ConversationPanel.inputKeyDown(event, this)">
         </label>
       </div>
     </div>
   </div>
   <div class="btn-group">
-    <input type="button" value="0" onclick="Api.getNews(0)"/>
-    <input type="button" value="5" onclick="Api.getNews(5)"/>
+    <input type="button" value="currentnews" onclick="Api.currentnews()"/>
+    <input type="button" value="todaynews" onclick="Api.todaynews()"/>
     <input type="button" value="6" onclick="Api.getNews(6)"/>
     <input type="button" value="9" onclick="Api.getNews(9)"/>
   </div>

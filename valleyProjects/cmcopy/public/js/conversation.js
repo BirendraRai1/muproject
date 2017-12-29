@@ -32,10 +32,21 @@ var ConversationPanel = (function() {
    // Api.todaynews();
    setupInputBox();
  }
+
+
+ function UserAction(text) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "/api/discnews", true);
+    var params = "textInput="+text;
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(params);
+    // var response = JSON.parse(xhttp.responseText);
+}
   // Set up callbacks on payload setters in Api module
   // This causes the displayMessage function to be called when messages are sent / received
   function chatUpdateSetup() {
     var currentRequestPayloadSetter = Api.setRequestPayload;
+
     Api.setRequestPayload = function(newPayloadStr) {
       currentRequestPayloadSetter.call(Api, newPayloadStr);
       displayMessage(JSON.parse(newPayloadStr), settings.authorTypes.user);
@@ -69,9 +80,13 @@ var ConversationPanel = (function() {
           'value': 'textInputDummy'
         }]
       };
-
-      dummy = Common.buildDomElement(dummyJson);
+      try{
+        dummy = Common.buildDomElement(dummyJson);
       document.body.appendChild(dummy);
+      }
+      catch(e){
+        console.log(e);
+      }
     }
 
     function adjustInput() {
@@ -117,6 +132,7 @@ var ConversationPanel = (function() {
 
   // Display a user or Watson message that has just been sent/received
   function displayMessage(newPayload, typeValue) {
+    //console.log(newPayload.input.text +"********"+typeValue);
     var isUser = isUserMessage(typeValue);
     var textExists = (newPayload.input && newPayload.input.text)
     || (newPayload.output && newPayload.output.text);
@@ -140,6 +156,8 @@ var ConversationPanel = (function() {
         currentDiv.classList.add('load');
       });
       // Move chat to the most recent messages when new messages are added
+      UserAction(newPayload.input.text);
+      messageDisplay();
       scrollToChatBottom();
     }
   }
@@ -210,29 +228,33 @@ var ConversationPanel = (function() {
   }
 
 
-  function messageDisplay(event, inputBox){
+  function messageDisplay(){
     // Submit on enter key, dis-allowing blank messages
-    if (event.keyCode === 13 && inputBox.value) {
+    if (event.keyCode === 13) {
       // Retrieve the context from the previous server response
       var context;
-      //var latestResponse = '<div class="dialogue-answer" style=" min-height: 58px; padding: 4px;border-radius: 2px;"><div class="profil-picture" style="width: 50px;height: 50px;float: left;position: relative;   margin: 0 5px 0 0;background: #fff;overflow: hidden;"><img src="../img/bot_2.png" alt="default" style="position: absolute;max-width: 48px;max-height: 48px;margin: auto;border-radius: 0;"></div><span style="color: #333;font-weight: 700;">Meta</span><div> hey, I am good thanks!  How are you?</div></div><button type="button" class="btn btn-secondary" style="border-radius: 16px;margin-left: 54px;cursor: default;padding: 10px;background-color: #362e40;color: white;border: none;text-decoration: none;display: inline-block;">READ IN META</button>';
-      var latestResponse=$('#chatting').append('<div class="dialogue-answer" style=" min-height: 58px; padding: 4px;border-radius: 2px;"><div class="profil-picture" style="width: 50px;height: 50px;float: left;position: relative;   margin: 0 5px 0 0;background: #fff;overflow: hidden;"><img src="../img/bot_2.png" alt="default" style="position: absolute;max-width: 48px;max-height: 48px;margin: auto;border-radius: 0;"></div><span style="color: #333;font-weight: 700;">Meta</span><div> hey, I am good thanks!  How are you?</div></div><button type="button" class="btn btn-secondary" style="border-radius: 16px;margin-left: 54px;cursor: default;padding: 10px;background-color: #362e40;color: white;border: none;text-decoration: none;display: inline-block;">READ IN META</button>');
+      //var latestResponse = '<div class="dialogue-answer" style=" min-height: 58px; padding: 4px;border-radius: 2px;"><div class="profil-picture" style="width: 50px;height: 50px;float: left;position: relative;   margin: 0 5px 0 0;background: #fff;overflow: hidden;"><img src="../img/bot_2.png" alt="default" style="position: absolute;max-width: 48px;max-height: 48px;margin: auto;border-radius: 0;"></div><span style="color: #333;font-weight: 700;">MetaFact</span><div> hey, I am good thanks!  How are you?</div></div><button type="button" class="btn btn-secondary" style="border-radius: 16px;margin-left: 54px;cursor: default;padding: 10px;background-color: #362e40;color: white;border: none;text-decoration: none;display: inline-block;">READ IN META</button>';
+     //var temp = inputBox.value;
+     var temp = '<div class="dialogue-answer" style=" min-height: 58px; padding: 4px;border-radius: 2px;"><div class="profil-picture" style="width: 50px;height: 50px;float: left;position: relative;   margin: 0 5px 0 0;background: #fff;overflow: hidden;"><img src="../img/bot_2.png" alt="default" style="position: absolute;max-width: 48px;max-height: 48px;margin: auto;border-radius: 0;"></div><span style="color: #333;font-weight: 700;">MetaFact</span><div> hey, I am good thanks!  How are you?</div></div><button type="button" class="btn btn-secondary" style="border-radius: 16px;margin-left: 54px;cursor: default;padding: 10px;background-color: #362e40;color: white;border: none;text-decoration: none;display: inline-block;">READ IN META</button>';
+      // var latestResponse=$('#scrollingChat').prepend('<div class="dialogue-answer" style=" min-height: 58px; padding: 4px;border-radius: 2px;"><div class="profil-picture" style="width: 50px;height: 50px;float: left;position: relative;   margin: 0 5px 0 0;background: #fff;overflow: hidden;"><img src="../img/bot_2.png" alt="default" style="position: absolute;max-width: 48px;max-height: 48px;margin: auto;border-radius: 0;"></div><span style="color: #333;font-weight: 700;">MetaFact</span><div> hey, I am good thanks!  How are you?</div></div><button type="button" class="btn btn-secondary" style="border-radius: 16px;margin-left: 54px;cursor: default;padding: 10px;background-color: #362e40;color: white;border: none;text-decoration: none;display: inline-block;">READ IN META</button>');
+            //var latestResponse = $('#scrollingChat').empty();
+           var latestResponse=$('#scrollingChat').append(temp);
+           $('#textInput').val('');
       if (latestResponse) {
         context = latestResponse.context;
         console.log("context ",context);
       }
 
       // Send the user message
-      Api.sendRequest(inputBox.value, context);
+      // Api.sendRequest(inputBox.value, context);
 
       // Clear input box for further messages
-      inputBox = '';
-      Common.fireEvent(inputBox, 'input');
+      // inputBox = '';
+      // Common.fireEvent(inputBox, 'input');
     }
     //$('#chatting').append('<div class="dialogue-answer" style=" min-height: 58px; padding: 4px;border-radius: 2px;"><div class="profil-picture" style="width: 50px;height: 50px;float: left;position: relative;   margin: 0 5px 0 0;background: #fff;overflow: hidden;"><img src="public/img/bot_2.png" alt="default" style="position: absolute;max-width: 48px;max-height: 48px;margin: auto;border-radius: 0;"></div><span style="color: #333;font-weight: 700;">Meta</span><div> hey, I am good thanks!  How are you?</div></div><button type="button" class="btn btn-secondary" style="border-radius: 16px;margin-left: 54px;cursor: default;padding: 10px;background-color: #362e40;color: white;border: none;text-decoration: none;display: inline-block;">READ IN META</button>');
     abc();
   }
-
   // Handles the submission of input
   function inputKeyDown(event, inputBox) {
     console.log("typeof inputBox ",typeof(inputBox));
